@@ -14,11 +14,17 @@ import "react-mde/lib/styles/css/react-mde-all.css";
  * to fully understand everything to move on)
  */
 
+const notesParsed = JSON.parse(localStorage.getItem("notes"));
+
 export default function App() {
-  const [notes, setNotes] = React.useState([]);
+  const [notes, setNotes] = React.useState(notesParsed || []);
   const [currentNoteId, setCurrentNoteId] = React.useState(
     (notes[0] && notes[0].id) || ""
   );
+
+  React.useEffect(() => {
+    localStorage.setItem("notes", JSON.stringify(notes));
+  }, [notes]);
 
   function createNewNote() {
     const newNote = {
@@ -29,6 +35,7 @@ export default function App() {
     setNotes((prevNotes) => [newNote, ...prevNotes]);
     setCurrentNoteId(newNote.id);
     console.log(notes);
+    addToLocal();
   }
 
   function updateNote(text) {
