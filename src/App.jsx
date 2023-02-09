@@ -6,14 +6,6 @@ import Split from "react-split";
 import { nanoid } from "nanoid";
 import "react-mde/lib/styles/css/react-mde-all.css";
 
-/**
- * Challenge: Spend 10-20+ minutes reading through the code
- * and trying to understand how it's currently working. Spend
- * as much time as you need to feel confident that you
- * understand the existing code (although you don't need
- * to fully understand everything to move on)
- */
-
 const notesParsed = JSON.parse(localStorage.getItem("noteList"));
 
 export default function App() {
@@ -55,7 +47,6 @@ export default function App() {
     setNotes(notes.filter((note) => note.id !== noteId));
     console.log(noteId);
     event.stopPropagation();
-    // Your code here
   }
 
   function findCurrentNote() {
